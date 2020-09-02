@@ -3,7 +3,10 @@ const app = express()
 const port = 5000
 const bodyParser = require('body-parser');
 const {User} = require("./models/User");
-const config = require('./config/key')
+
+// key.js에서 가져오기(mongodb uri)
+const config = require('./config/key');
+
 // application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}));
 // application/json
@@ -13,7 +16,7 @@ app.use(bodyParser.json());
 // connect with MongoDB
 // if it works, pop up success message
 // or it doesn't, pop up the content of error
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 mongoose.connect(config.mongoURI, {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('MongoDB Connected...'))
